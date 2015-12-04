@@ -17,9 +17,12 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AppWindow {
 	MP3_Player MP = new MP3_Player();
+	Artist_Sort AS = new Artist_Sort();
 	
 	
 	private JFrame frame;
@@ -60,6 +63,12 @@ public class AppWindow {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnSortByArtist = new JButton("Sort by Artist");
+		btnSortByArtist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AS.main(null);
+			}
+		});
 		btnSortByArtist.setBounds(496, 125, 107, 23);
 		frame.getContentPane().add(btnSortByArtist);
 		
@@ -100,6 +109,15 @@ public class AppWindow {
 		frame.getContentPane().add(btnAddSong);
 		
 		JButton btnSortByAlbum = new JButton("Sort by Album");
+		btnSortByAlbum.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		btnSortByAlbum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnSortByAlbum.setBounds(496, 159, 107, 23);
 		frame.getContentPane().add(btnSortByAlbum);
 		
@@ -111,13 +129,19 @@ public class AppWindow {
 		btnplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MP.Play("G:\\Music\\ASAP Ferg - Ferg Forever(DatPiff.com)\\Hood Tales.mp3");
+				MP.Play("Wish_you_were_here.mp3");
 			}
 		});
 		btnplay.setBounds(263, 440, 89, 23);
 		frame.getContentPane().add(btnplay);
 		
 		JButton btnLlpause = new JButton("ll (Pause)");
+		btnLlpause.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				MP.Pause();
+			}
+		});
 		btnLlpause.setBounds(381, 440, 89, 23);
 		frame.getContentPane().add(btnLlpause);
 		

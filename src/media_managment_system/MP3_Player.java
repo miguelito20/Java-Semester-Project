@@ -16,7 +16,7 @@ public class MP3_Player{
 	public long pauseSong;
 	public long SongLength;
 	public String currentSong;
-	
+	public String SourceFile = "C:\\Users\\Michael\\Music\\";
 	public void Stop()
 	{
 		if(mstream != null){
@@ -27,7 +27,7 @@ public class MP3_Player{
 	}
 	public void Play(String path){
 		try{
-			FIS = new FileInputStream(path);
+			FIS = new FileInputStream(SourceFile+path);
 			BIS = new BufferedInputStream(FIS);
 			mstream = new Player(BIS);
 			
@@ -93,3 +93,4 @@ public class MP3_Player{
 	}
 
 }
+

@@ -27,12 +27,12 @@ public class MP3_Player{
 	}
 	public void Play(String path){
 		try{
-			FIS = new FileInputStream(SourceFile+path);
+			FIS = new FileInputStream(SourceFile+path+".mp3");
 			BIS = new BufferedInputStream(FIS);
 			mstream = new Player(BIS);
 			
 			SongLength = FIS.available();
-			 currentSong = path+"";
+			 currentSong = path;
 			} 			
 		catch (FileNotFoundException | JavaLayerException e){
 			e.printStackTrace();

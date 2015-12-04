@@ -15,6 +15,8 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
@@ -83,11 +85,11 @@ public class AppWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		ArrayList<String> aTitle = new ArrayList<String>();  
-		ArrayList<String> aAlbum = new ArrayList<String>();
-		ArrayList<String> aArtist = new ArrayList<String>();
-		ArrayList<String> aMP3id = new ArrayList<String>();
-		ArrayList<String> aFile = new ArrayList<String>();
+		ArrayList<String> bTitle = new ArrayList<String>();  
+		ArrayList<String> bAlbum = new ArrayList<String>();
+		ArrayList<String> bArtist = new ArrayList<String>();
+		ArrayList<String> bMP3id = new ArrayList<String>();
+		ArrayList<String> bFile = new ArrayList<String>();
 		MIN.Pull();//Loads XML Files into program
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.GREEN);
@@ -95,20 +97,45 @@ public class AppWindow {
 		frame.setBounds(100, 100, 644, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		 aTitle = XMLLoad.aTitle;  
-		 aAlbum = XMLLoad.aAlbum;
-		 aArtist = XMLLoad.aArtist;
-		 aMP3id = XMLLoad.aMP3id;
-		 aFile = XMLLoad.aFile;
+		//pulling XML data from XMLLoad.java
+		 bTitle = XMLLoad.aTitle;  
+		 bAlbum = XMLLoad.aAlbum;
+		 bArtist = XMLLoad.aArtist;
+		 bMP3id = XMLLoad.aMP3id;
+		 bFile = XMLLoad.aFile;
+		 String tTitle[] = new String[XMLLoad.aTitle.size()];//Transfering the Array List into a String array for better data manipulation
+		 for (int i=0;i<XMLLoad.aTitle.size(); i++){
+			 tTitle[i] = XMLLoad.aTitle.get(i);
+			 System.out.println(tTitle[i]);
+		 }
+		 String tFile[] = new String[XMLLoad.aFile.size()];//Transfering the Array List into a String array for better data manipulation
+		 for (int i=0;i<XMLLoad.aFile.size(); i++){
+			 tFile[i] = XMLLoad.aFile.get(i);
+			 System.out.println(tFile[i]);
+		 }
 		 
+			 Vector<String> row = new Vector<String>();
+			 row.addElement(XMLLoad.aTitle.get(1));
+			 row.addElement(XMLLoad.aAlbum.get(1));
+			 row.addElement(XMLLoad.aArtist.get(1));
+			 Vector<String> row2 = new Vector<String>();
+			 row.addElement(XMLLoad.aTitle.get(2));
+			 row.addElement(XMLLoad.aAlbum.get(2));
+			 row.addElement(XMLLoad.aArtist.get(2));
+			 Vector<String> row3 = new Vector<String>();
+			 row.addElement(XMLLoad.aTitle.get(3));
+			 row.addElement(XMLLoad.aAlbum.get(3));
+			 row.addElement(XMLLoad.aArtist.get(3));
+			 Vector<String> row4 = new Vector<String>();
+			 row.addElement(XMLLoad.aTitle.get(4));
+			 row.addElement(XMLLoad.aAlbum.get(4));
+			 row.addElement(XMLLoad.aArtist.get(4));
 		 
-	     Vector<Vector<String>> dataVector = new Vector<Vector<String>>();
-	        for (String row : aTitle) {
-	            row = row.trim();  //UPDATE
-	            Vector<String> data = new Vector<String>();
-	            data.addAll(Arrays.asList(row.split("\\s+")));
-	            dataVector.add(data);
-	        }
+	     Vector<Vector<String>> dataVector = new Vector<Vector<String>>(4);
+	     dataVector.addElement(row);
+	     dataVector.addElement(row2);
+	     dataVector.addElement(row3);
+	     dataVector.addElement(row4);
 
 	        Vector<String> header = new Vector<String>(2);
 	        header.add("Title");
@@ -117,9 +144,12 @@ public class AppWindow {
 
 	        TableModel model = new DefaultTableModel(dataVector, header);
 		 	table = new JTable(model);
-		 	
 			table.setBounds(87, 129, 375, 95);
-			frame.getContentPane().add(table);
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(72, 110, 402, 198);
+			scrollPane.getVerticalScrollBar();
+			frame.getContentPane().add(scrollPane);
+			scrollPane.setViewportView(table);
 		
 		txtArtistName = new JTextField();//Input source for new artist name
 		txtArtistName.setBounds(10, 33, 86, 20);
@@ -196,7 +226,7 @@ public class AppWindow {
 		btnplay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MP.Play(Source);
+				MP.Play(XMLLoad.aTitle.get(2));
 			}
 		});
 		btnplay.setBounds(263, 440, 89, 23);

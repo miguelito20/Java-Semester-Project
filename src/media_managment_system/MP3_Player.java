@@ -16,7 +16,7 @@ public class MP3_Player{
 	public long pauseSong;
 	public long SongLength;
 	public String currentSong;
-	public String SourceFile = "C:\\Users\\Michael\\Music\\";
+	public String SourceFile = "Music\\";
 	public void Stop()
 	{
 		if(mstream != null){

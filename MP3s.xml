@@ -1,23 +1,33 @@
 <?xml version="1.0"?>
 <MP3s>
     <MP3 mp3id="1">
-        <Title>Hotline_Bling</Title>
-        <Artist>Drake</Artist>
-        <Album>Hotline_Bling</Album>
+        <Title>Light_Powered</Title>
+        <Artist>Deastro</Artist>
+        <Album>Ghostly_Swim</Album>
+	<File>Light_Powered.mp3</File>
     </MP3>
     <MP3 mp3id="2">
-        <Title>Jumpman</Title>
-        <Artist>Drake</Artist>
-        <Album>What_A_Time_To_Be_Alive</Album>
+        <Title>Only_One</Title>
+        <Artist>Kanye West</Artist>
+        <Album>Blackout</Album>
+	<File>Only_One.mp3</File>
     </MP3>
     <MP3 mp3id="3">
-        <Title>679</Title>
-        <Artist>Fetty_Wap</Artist>
-        <Album>Fetty_Wap</Album>
+        <Title>Try_To_Remeber</Title>
+        <Artist>Pretty_Lights</Artist>
+        <Album>Taking_Up_Your_Precious_Time</Album>
+	<File>Try_To_Remeber.mp3</File>
     </MP3>
     <MP3 mp3id="4">
-        <Title>Often</Title>
-        <Artist>The_Weekend</Artist>
-        <Album>Beauty_Behind_The_Madness</Album>
+        <Title>Who_shot_ya</Title>
+        <Artist>The_Notorious_B.I.G.</Artist>
+        <Album>Greatest_Hits</Album>
+ 	<File>Who_shot_ya.mp3</File>
+    </MP3>
+    <MP3 mp3id="5">
+	<Title>Wish_You_Were_Here</Title>
+	<Artist>Pink_Floyd</Artist>
+	<Album>Wish_You_Were_Here</Album>
+	<File>Wish_you_were_here.mp3</File>
     </MP3>
 </MP3s>

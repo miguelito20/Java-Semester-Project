@@ -36,10 +36,12 @@ public class XMLSort {
           
           //Title of associated id number
           System.out.println("*************************");
-          String expression = "/MP3s/MP3[@mp3id='1']/Title";
+          String expression = "/MP3s/MP3[@mp3id='1']";
           System.out.println(expression);
           String Title = xPath.compile(expression).evaluate(xmlDocument);
+          String Artist = xPath.compile(expression).evaluate(xmlDocument);
           System.out.println(Title);
+          
           
           //Print All Titles
           ArrayList<String> SongNames = new ArrayList<String>();

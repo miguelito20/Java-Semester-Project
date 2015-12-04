@@ -20,19 +20,36 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class AppWindow {
 	MP3_Player MP = new MP3_Player();//Calling the MP3_Player Class and its methods to allow the GUI to play .mp3 files
 	Artist_Sort AS = new Artist_Sort();//Calling the Artist_Sort Class and its methods to sort the XML Files 
 	XMLLoad MIN	= new XMLLoad();//Calling the XMLLoad Class and its methods to read and write to the XML File
 	
-	
 	private JFrame frame;
 	private JTextField txtArtistName;
 	private JTextField txtAlbumName;
 	private JTextField txtSongName;
 	private JTable table;
-	private String Source = "Wish_you_were_here.mp3";//Variable to store the name of the .mp3 file so the program knows what file to stream
+	private String Source = "Try_To_Remeber.mp3";//Variable to store the name of the .mp3 file so the program knows what file to stream
+	
 
 	/**
 	 * Launch the application.
@@ -62,6 +79,8 @@ public class AppWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.GREEN);
+		frame.setBackground(Color.GREEN);
 		frame.setBounds(100, 100, 644, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -124,6 +143,12 @@ public class AppWindow {
 		JButton btnSortBySong = new JButton("Sort by Song");//Button to Sort the XML File content by Song - alphabetically 
 		btnSortBySong.setBounds(496, 193, 107, 23);
 		frame.getContentPane().add(btnSortBySong);
+		btnSortBySong.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			
+			}
+		});
 		
 		
 		JButton btnSortByArtist = new JButton("Sort by Artist");//Button to Sort the XML File content by Artist - alphabetically 

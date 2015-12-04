@@ -6,6 +6,8 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
@@ -25,7 +27,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Vector;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -49,7 +54,7 @@ public class AppWindow {
 	private JTextField txtSongName;
 	private JTable table;
 	private String Source = "Try_To_Remeber.mp3";//Variable to store the name of the .mp3 file so the program knows what file to stream
-	
+
 
 	/**
 	 * Launch the application.
@@ -78,18 +83,43 @@ public class AppWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ArrayList<String> aTitle = new ArrayList<String>();  
+		ArrayList<String> aAlbum = new ArrayList<String>();
+		ArrayList<String> aArtist = new ArrayList<String>();
+		ArrayList<String> aMP3id = new ArrayList<String>();
+		ArrayList<String> aFile = new ArrayList<String>();
+		MIN.Pull();//Loads XML Files into program
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.GREEN);
 		frame.setBackground(Color.GREEN);
 		frame.setBounds(100, 100, 644, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
-		JList list = new JList();//possible display for XML File content
-		list.setBackground(Color.BLACK);
-		list.setBounds(212, 200, 137, -118);
-		frame.getContentPane().add(list);
+		 aTitle = XMLLoad.aTitle;  
+		 aAlbum = XMLLoad.aAlbum;
+		 aArtist = XMLLoad.aArtist;
+		 aMP3id = XMLLoad.aMP3id;
+		 aFile = XMLLoad.aFile;
+		 
+		 
+	     Vector<Vector<String>> dataVector = new Vector<Vector<String>>();
+	        for (String row : aTitle) {
+	            row = row.trim();  //UPDATE
+	            Vector<String> data = new Vector<String>();
+	            data.addAll(Arrays.asList(row.split("\\s+")));
+	            dataVector.add(data);
+	        }
+
+	        Vector<String> header = new Vector<String>(2);
+	        header.add("Title");
+	        header.add("Album");
+	        header.add("Artist");
+
+	        TableModel model = new DefaultTableModel(dataVector, header);
+		 	table = new JTable(model);
+		 	
+			table.setBounds(87, 129, 375, 95);
+			frame.getContentPane().add(table);
 		
 		txtArtistName = new JTextField();//Input source for new artist name
 		txtArtistName.setBounds(10, 33, 86, 20);
@@ -134,7 +164,7 @@ public class AppWindow {
 		btnSortByAlbum.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MIN.Pull();
+				
 			}});
 		btnSortByAlbum.setBounds(496, 159, 107, 23);
 		frame.getContentPane().add(btnSortByAlbum);

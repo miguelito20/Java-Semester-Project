@@ -30,11 +30,13 @@ public class XMLLoad {
 	private static String passArtist = "/MP3s/MP3/Artist";
 	private static String passMP3id = "/MP3s/MP3[@mp3id]";
 	private static String passFile = "/MP3s/MP3/File";
+	
 	public static ArrayList<String> aTitle = new ArrayList<String>();
 	public static ArrayList<String> aAlbum = new ArrayList<String>();
 	public static ArrayList<String> aArtist = new ArrayList<String>();
 	public static ArrayList<String> aMP3id = new ArrayList<String>();
 	public static ArrayList<String> aFile = new ArrayList<String>();
+
 
 	public static void Pull() {
 		 
@@ -64,8 +66,10 @@ public class XMLLoad {
         	  aAlbum.add(SAlbum.item(i).getFirstChild().getNodeValue());
         	  
         	  aFile.add(SFile.item(i).getFirstChild().getNodeName());
+        	  
+        	  
           }
-          
+    
           
 //          //Print All Titles
 //          ArrayList<String> SongNames = new ArrayList<String>();

@@ -23,8 +23,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XMLSort {
-	public static void main(String[] args) {
+public class XMLLoad {
+	public static String[] Title = new String[10];
+
+	public static void Pull() {
 		 
       try {
       	//Loading XML File
@@ -35,17 +37,18 @@ public class XMLSort {
           XPath xPath =  XPathFactory.newInstance().newXPath();
           
           //Title of associated id number
-          System.out.println("*************************");
-          String expression = "/MP3s/MP3[@mp3id='1']";
+          String expression = "/MP3s/MP3[@mp3id]";
           System.out.println(expression);
-          String Title = xPath.compile(expression).evaluate(xmlDocument);
-          String Artist = xPath.compile(expression).evaluate(xmlDocument);
-          System.out.println(Title);
+          NodeList MP3 = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
+          for (int i = 0; i < MP3.getLength(); i++){
+        	  Title[i] = MP3.item(i).getFirstChild().getNodeValue();
+          }
+          System.out.println(MP3);
           
           
           //Print All Titles
           ArrayList<String> SongNames = new ArrayList<String>();
-          System.out.println("*************************");
+   
           expression = "/MP3s/MP3/Title";
           System.out.println(expression);
           NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(xmlDocument, XPathConstants.NODESET);
